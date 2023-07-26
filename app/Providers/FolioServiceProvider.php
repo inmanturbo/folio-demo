@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Folio;
+use App\FolioManager;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Folio\Folio;
 
 class FolioServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,8 @@ class FolioServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->singleton(FolioManager::class);
+
         Folio::route(resource_path('views/pages'), middleware: [
             '*' => [
                 //
